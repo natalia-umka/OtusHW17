@@ -111,3 +111,43 @@ a464c54f93a9: Pushed
 latest: digest: sha256:20a060cc9a8aee010b69b1ea1b2ff91328de7819aaf15b04530ba3586bdd92d8 size: 1567
 
 **[Репозиторий на Docker Hub](https://hub.docker.com/r/natali1701/nginx)**
+
+Задание со * (звездочкой)
+
+Кастомный образ nginx уже был создан, теперь создадим  и для php и объединим их в docker-compose.
+
+Кастомный образ php создадим на основе php-fpm:
+
+[root@admin OtusHW17]# docker build -t natali1701/fpm .
+
+Successfully built fe6271ce1e02
+
+Successfully tagged natali1701/fpm:latest
+
+[root@admin OtusHW17]# docker push natali1701/fpm
+
+The push refers to repository [docker.io/natali1701/fpm]
+
+314e340451b9: Mounted from natali1701/nginx 
+
+5b1058dac6b6: Mounted from natali1701/nginx 
+
+3d60a1e55272: Mounted from natali1701/nginx 
+
+df2236baa385: Mounted from natali1701/nginx 
+
+b2babec7eb92: Mounted from natali1701/nginx 
+
+a464c54f93a9: Mounted from natali1701/nginx 
+
+latest: digest: sha256:20a060cc9a8aee010b69b1ea1b2ff91328de7819aaf15b04530ba3586bdd92d8 size: 1567
+
+**Объединение в docker-compose**
+
+Для этого потребуется Docker-compose.yml, конфигурация nginx для работы с phр defaul-php.conf и  файл с командой вывода php-info index.php
+
+[root@admin OtusHW17]# docker-compose up -d
+
+Образы  в Docker Hub
+- [https://hub.docker.com/r/natali1701/nginx](https://hub.docker.com/r/natali1701/nginx)
+- [https://hub.docker.com/r/natali1701/fpm](https://hub.docker.com/r/natali1701/fpm)
